@@ -102,3 +102,9 @@ The hardest concept I faced was understanding which payload instrument is suitab
 How is your project different from a real professional spacecraft-design system?
 
 My project is different from a real professional spacecraft-design system because it only works at the conceptual-design level. It recommends a suitable mission type, orbit, payload, and satellite subsystems based on general rules, then explains the reasons for those recommendations. A professional system would perform detailed calculations, simulations, optimization, testing, and verification for every subsystem. It would also be used by specialized engineering teams to produce a safe and flight-ready spacecraft design. Therefore, my project is an intelligent assistant for early design decisions, not a replacement for professional aerospace engineers.
+-------------------------------------------------------------------------------------------------
+What did you benefit from most this week and What did you find difficult?
+
+During the first week, I learned how satellite missions influence the selection of the orbit, payload, and main subsystems. The most useful concept was understanding that every satellite design decision is connected to other systems, such as power, thermal control, communications, and ADCS. I also learned the differences between LEO, MEO, GEO, SSO, and HEO and why each orbit is suitable for certain missions.
+
+The most difficult part was understanding the different payload instruments required for each mission, such as optical, multispectral, infrared, thermal infrared, and SAR sensors. I improved my understanding by studying real mission examples and comparing their requirements. I also gained practical experience with Python, Git, GitHub, and VS Code by creating and uploading my first satellite-related program.
