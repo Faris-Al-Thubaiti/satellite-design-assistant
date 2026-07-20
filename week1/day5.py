@@ -26,17 +26,17 @@ else:
     print("The satellite is inactive")
 
 print(
-    f"Approximate orbital speed: "
+    "Approximate orbital speed: "
     f"{satellite_orbit_speed_km_s} km/s"
 )
 
 print(
-    f"Satellite weight on Earth: "
+    "Satellite weight on Earth: "
     f"{satellite_earth_weight_n} N"
 )
 
 print(
-    f"Satellite weight on the Moon: "
+    "Satellite weight on the Moon: "
     f"{satellite_moon_weight_n} N"
 )
 
