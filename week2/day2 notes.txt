@@ -1,0 +1,30 @@
+Week 2 - Day 2 Reflection
+
+1- What did I learn today?
+
+Today I learned how to structure JSON data and how to implement different scenarios of satellite information using JSON.
+I learned how to handle and manipulate JSON files using the Python JSON library, including reading, writing, and modifying structured data.
+
+2- What concept was difficult?
+
+The most difficult concept was learning the different statements and methods used to handle and manipulate JSON files using the Python JSON library.
+Understanding when to use:
+- json.load()
+- json.dump()
+- json.loads()
+- json.dumps()
+
+and understanding the difference between files and variables required practice.
+
+3- What finally made it clear?
+
+Trial and error made the concept clearer.
+Testing different approaches, observing the errors, and understanding why they happened helped me understand how JSON handling works in Python.
+
+4- What mistake taught me the most?
+
+The mistake that taught me the most was dealing with files and persistent data.
+
+I learned that every line of code is important, especially when working with files and folders because a small mistake can cause duplication, removing, or modifying critical data.
+
+I also learned that files keep their previous state, meaning that every program execution starts from the current saved data, not from the original data.

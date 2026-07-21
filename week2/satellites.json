@@ -1,0 +1,37 @@
+[
+    {
+        "name": "AgriVision-1",
+        "mission_type": "Earth Observation",
+        "orbit": "SSO",
+        "altitude_km": 600,
+        "payload": "Multispectral Camera",
+        "is_active": true
+    },
+    {
+        "name": "DesertCom-1",
+        "mission_type": "Communication",
+        "orbit": "GEO",
+        "altitude_km": 35786,
+        "payload": "Communication Transponder",
+        "mass_kg": 3200,
+        "is_active": true
+    },
+    {
+        "name": "NavArabia-1",
+        "mission_type": "Navigation",
+        "orbit": "MEO",
+        "altitude_km": 20200,
+        "payload": "Atomic Clock and Navigation Signal Transmitter",
+        "mass_kg": 1800,
+        "is_active": true
+    },
+    {
+        "name": "WeatherSat-1",
+        "mission_type": "Weather Monitoring",
+        "orbit": "GEO",
+        "altitude_km": 35786,
+        "payload": "Multispectral Weather Imager",
+        "mass_kg": 4500,
+        "is_active": false
+    }
+]

@@ -1,0 +1,10 @@
+{
+    "mission": "Navigation",
+    "objective": "Cover Saudi Arabia region for specialized application",
+    "orbit": "MEO",
+    "altitude_km": 20200,
+    "payload": "Atomic Clock and Navigation Signal Transmitter",
+    "power_budget_w": 2000,
+    "mass_kg": 780,
+    "confidence": 0.511
+}
