@@ -1,0 +1,6 @@
+Day 3:
+I learned how to use try/except to prevent programs from crashing when files or API requests fail.
+I also learned how to call a real API using the requests library and how to cache the response in a JSON file to avoid unnecessary API calls.
+
+The most challenging part was managing the program flow between cached data and new API data.
+I learned that the cache must be checked before calling the API.
