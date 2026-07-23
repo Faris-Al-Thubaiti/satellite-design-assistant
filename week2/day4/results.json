@@ -1,0 +1,47 @@
+[
+    {
+        "date": "2026-07-23T21:02:16.028559",
+        "mission": "I need a satellite for regional navigation services.",
+        "recommendation": {
+            "mission_type": "Regional Navigation",
+            "recommended_orbit": "MEO",
+            "altitude_km": 20200,
+            "payload": "Navigation payload with atomic clocks and signal generators",
+            "power_watts": 1500,
+            "mass_class": "Medium",
+            "lifetime_years": 12,
+            "adcs_type": "Three-axis stabilized",
+            "justification": "Regional navigation satellites require medium Earth orbit (MEO) to provide a wide coverage area with good signal visibility and timing accuracy. An altitude around 20,200 km is typical for navigation constellations to balance coverage and signal strength. Payload includes precise atomic clocks and signal generation for timing and positioning. Power requirement is moderate (~1500 W) to support payload and communication needs. Three-axis stabilized ADCS is necessary for accurate antenna pointing and payload alignment. The satellite is medium mass to incorporate required payload and power subsystems. A mission lifetime of 12 years ensures longevity and cost-efficiency."
+        }
+    },
+    {
+        "date": "2026-07-23T21:02:28.230052",
+        "mission": "I need a satellite for regional navigation services.",
+        "recommendation": {
+            "mission_type": "Regional Navigation",
+            "recommended_orbit": "MEO",
+            "altitude_km": 20200,
+            "payload": "Navigation signal transmitter and receiver",
+            "power_watts": 1200,
+            "mass_class": "Medium",
+            "lifetime_years": 10,
+            "adcs_type": "Three-axis stabilized",
+            "justification": "Navigation satellites typically operate in Medium Earth Orbit (MEO) around 20,200 km to provide broad regional coverage with good signal strength and timing accuracy. The payload consists of navigation signal transmitters and receivers to enable positioning services. A medium power budget (around 1200 W) supports the payload and satellite subsystems. Medium mass satellites balance between capability and launch cost. A mission lifetime of about 10 years is common to maintain system reliability. Three-axis stabilization is essential for accurate antenna pointing and signal stability required for navigation."
+        }
+    },
+    {
+        "date": "2026-07-23T21:03:06.178132",
+        "mission": "I need a satellite for regional navigation services.",
+        "recommendation": {
+            "mission_type": "Regional Navigation",
+            "recommended_orbit": "MEO",
+            "altitude_km": 20000,
+            "payload": "Navigation payload with atomic clocks and signal transmitters",
+            "power_watts": 1500,
+            "mass_class": "Medium",
+            "lifetime_years": 10,
+            "adcs_type": "Three-axis stabilized with star trackers and reaction wheels",
+            "justification": "For regional navigation services, Medium Earth Orbit (MEO) at around 20,000 km altitude provides optimal coverage and signal strength with moderate number of satellites. This altitude balances between payload power requirements and signal delay, making navigation signals accurate and reliable. Atomic clocks and signal transmitters are essential payload components for navigation capabilities. Power requirement of 1500 watts supports the payload and satellite bus subsystems. A medium mass class supports adequate payload and power systems but keeps launch costs moderate. A 10-year design life aligns with typical navigation constellation replacement cycles. Three-axis stabilized ADCS with star trackers and reaction wheels delivers precise pointing accuracy crucial for navigation signal integrity."
+        }
+    }
+]
