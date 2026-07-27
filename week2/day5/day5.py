@@ -88,7 +88,7 @@ Rules:
 
 # Test mission
 
-mission = "I need a satellite to monitor agricultural fields in Saudi Arabia."
+mission = "I need a satellite for taking pictures of taif city every few days"
 
 design = analyze_mission(mission)
 

@@ -30,18 +30,18 @@
         }
     },
     {
-        "date": "2026-07-23T22:08:41.379822",
-        "mission": "I need a satellite to monitor agricultural fields in Saudi Arabia.",
+        "date": "2026-07-23T23:14:30.025393",
+        "mission": "I need a satellite for taking pictures of taif city every few days",
         "recommendation": {
-            "mission_type": "Agricultural Monitoring",
+            "mission_type": "Earth Observation",
             "recommended_orbit": "SSO",
             "altitude_km": 600,
-            "payload": "Multispectral and Hyperspectral Imager",
-            "power_watts": 1500,
-            "mass_class": "Medium",
+            "payload": "High-resolution optical camera",
+            "power_watts": 150,
+            "mass_class": "Small Satellite",
             "lifetime_years": 5,
-            "adcs_type": "3-Axis Stabilization",
-            "justification": "Monitoring agricultural fields requires consistent, repeatable observations with good spatial resolution and consistent sunlight conditions for multispectral imaging. A Sun-Synchronous Orbit (SSO) at around 600 km altitude allows the satellite to pass over the same regions at approximately the same local solar time, providing consistent lighting conditions for accurate vegetation analysis. The multispectral and hyperspectral payload is essential for detecting crop health, soil moisture, and vegetation indices. A medium mass class balances payload capacity and cost. A power budget of about 1500 watts supports the payload and onboard systems while ensuring robustness. The mission lifetime of 5 years ensures sufficient data continuity for seasonal and annual agricultural monitoring. Three-axis stabilization is required for precise pointing of the imaging instruments."
+            "adcs_type": "Three-axis stabilized",
+            "justification": "For imaging Taif city every few days, a Sun-Synchronous Orbit (SSO) is optimal as it provides consistent lighting conditions and regular revisit times. An altitude of around 600 km balances spatial resolution with coverage area and revisit frequency. A high-resolution optical camera is suitable for detailed images. Power around 150 watts supports payload and satellite subsystems. A small satellite mass class reduces launch costs and complexity. Three-axis stabilization ensures precise pointing for good image quality. A lifetime of 5 years aligns with typical small Earth observation missions."
         }
     }
 ]
