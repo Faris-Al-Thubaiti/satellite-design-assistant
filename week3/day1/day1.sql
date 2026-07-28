@@ -1,6 +1,3 @@
--- Week 3, Day 1
--- SQLite fundamentals
-
 CREATE TABLE satellites (
     id INTEGER PRIMARY KEY,
     name TEXT NOT NULL,
