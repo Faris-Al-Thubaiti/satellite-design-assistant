@@ -1,0 +1,3 @@
+Day 3: Today I learned how to connect Python to SQLite and build CRUD functions for creating, reading, and deleting mission data and recommendations.
+
+The most challenging part was understanding how database rows are converted into Python dictionaries and how ON DELETE CASCADE automatically deletes a recommendation when its mission is deleted.
