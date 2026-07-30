@@ -1,0 +1,11 @@
+Day 4 Reflection
+
+Today I learned how to build and manage an engineering knowledge base using JSON, Python, and SQLite.
+
+I created a knowledge_base table that stores reusable satellite design knowledge for different mission types.
+ I also learned how to seed the initial knowledge from a JSON file, retrieve a specific mission type from the database, and safely update selected fields.
+
+One of the most important things I understood today was the difference between the JSON knowledge file and the database table.
+ The JSON file acts as the initial seed and recovery source, while the SQLite database becomes the live source used and updated by the application.
+
+I also learned that complex Python structures such as lists and dictionaries cannot be stored directly in

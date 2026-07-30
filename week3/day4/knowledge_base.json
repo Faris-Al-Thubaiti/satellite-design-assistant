@@ -1,0 +1,824 @@
+{
+    "Earth Observation": {
+        "default_orbit": "SSO",
+        "minimum_altitude_km": 500,
+        "maximum_altitude_km": 800,
+        "typical_mass_class": "Small to Medium Satellite",
+        "typical_lifetime_years": 5,
+
+        "payload_options": [
+            {
+                "payload_type": "RGB Camera",
+                "use_when": "Natural-color imagery is required for mapping or visual inspection."
+            },
+            {
+                "payload_type": "Multispectral Camera",
+                "use_when": "Vegetation, agriculture, water, or environmental analysis is required."
+            },
+            {
+                "payload_type": "Synthetic Aperture Radar",
+                "use_when": "Nighttime or all-weather observation is required."
+            }
+        ],
+
+        "required_subsystems": [
+            {
+                "subsystem": "ADCS",
+                "reason": "Accurate pointing is required for stable and correctly targeted imagery."
+            },
+            {
+                "subsystem": "OBC",
+                "reason": "Image data may require onboard processing, compression, and storage."
+            },
+            {
+                "subsystem": "COMMS",
+                "reason": "Large payload data volumes require a suitable downlink."
+            },
+            {
+                "subsystem": "EPS",
+                "reason": "The payload, processor, and communication system require reliable power."
+            }
+        ],
+
+        "design_drivers": [
+            "Spatial resolution",
+            "Revisit time",
+            "Swath width",
+            "Data volume",
+            "Lighting conditions"
+        ],
+
+        "advantages": [
+            "SSO provides approximately consistent lighting conditions.",
+            "LEO provides better spatial resolution than higher-altitude orbits."
+        ],
+
+        "limitations": [
+            "A single satellite does not provide continuous global coverage.",
+            "High-resolution imagery produces large data volumes."
+        ],
+
+        "selection_rules": [
+            {
+                "condition": "The mission focuses on agriculture or vegetation.",
+                "recommendation": "Use a multispectral payload in SSO."
+            },
+            {
+                "condition": "The mission requires nighttime or cloud-penetrating observation.",
+                "recommendation": "Use a SAR payload in LEO or SSO."
+            },
+            {
+                "condition": "The mission requires simple visual mapping.",
+                "recommendation": "Use an RGB camera in LEO or SSO."
+            }
+        ]
+    },
+    "Communication": {
+    "default_orbit": "GEO",
+    "minimum_altitude_km": 35786,
+    "maximum_altitude_km": 35786,
+    "typical_mass_class": "Medium to Large Satellite",
+    "typical_lifetime_years": 15,
+
+    "payload_options": [
+        {
+            "payload_type": "Bent-Pipe Communication Transponder",
+            "use_when": "The mission requires receiving, amplifying, frequency-shifting, and retransmitting communication signals with minimal onboard processing."
+        },
+        {
+            "payload_type": "Regenerative Communication Payload",
+            "use_when": "The mission requires onboard signal processing, routing, decoding, or flexible allocation of communication resources."
+        },
+        {
+            "payload_type": "Inter-Satellite Link Terminal",
+            "use_when": "The mission uses a constellation whose satellites must exchange data directly."
+        }
+    ],
+
+    "required_subsystems": [
+        {
+            "subsystem": "COMMS",
+            "reason": "The communication payload, antennas, amplifiers, frequencies, and link budget form the primary mission capability."
+        },
+        {
+            "subsystem": "EPS",
+            "reason": "High-power transmitters and communication payload electronics require a reliable and sufficiently sized power system."
+        },
+        {
+            "subsystem": "ADCS",
+            "reason": "Directional antennas must remain accurately pointed toward the intended ground region, gateway, or another satellite."
+        },
+        {
+            "subsystem": "Thermal Control",
+            "reason": "Power amplifiers and communication electronics generate heat that must remain within safe operating limits."
+        }
+    ],
+
+    "design_drivers": [
+        "Coverage area",
+        "Communication latency",
+        "Required data throughput",
+        "Link budget",
+        "Frequency band",
+        "Antenna gain",
+        "Service availability",
+        "Number of users"
+    ],
+
+    "advantages": [
+        "GEO provides continuous coverage of approximately the same geographic region.",
+        "A small number of GEO satellites can provide wide-area communication coverage.",
+        "LEO constellations can reduce latency and improve global service availability."
+    ],
+
+    "limitations": [
+        "GEO communication has higher latency because of the large signal-travel distance.",
+        "GEO satellites generally require larger launch vehicles, more power, and stronger communication links.",
+        "LEO communication systems require many satellites and frequent handovers between spacecraft."
+    ],
+
+    "selection_rules": [
+        {
+            "condition": "The mission requires continuous communication coverage over one large fixed region.",
+            "recommendation": "Use a GEO satellite with high-gain directional antennas and a communication transponder."
+        },
+        {
+            "condition": "The mission requires low-latency communication services.",
+            "recommendation": "Use a LEO constellation, typically between approximately 500 and 1200 km."
+        },
+        {
+            "condition": "The mission requires onboard routing or flexible bandwidth allocation.",
+            "recommendation": "Use a regenerative communication payload."
+        },
+        {
+            "condition": "The mission uses multiple cooperating satellites.",
+            "recommendation": "Consider inter-satellite links for routing data between spacecraft."
+        }
+    ]
+    },
+    "Navigation": {
+    "default_orbit": "MEO",
+    "minimum_altitude_km": 19000,
+    "maximum_altitude_km": 24000,
+    "typical_mass_class": "Medium Satellite",
+    "typical_lifetime_years": 12,
+
+    "payload_options": [
+        {
+            "payload_type": "Atomic Clock",
+            "use_when": "The satellite must generate highly accurate timing references for position and navigation calculations."
+        },
+        {
+            "payload_type": "Navigation Signal Generator and Transmitter",
+            "use_when": "The mission must broadcast synchronized ranging signals to navigation receivers."
+        },
+        {
+            "payload_type": "Inter-Satellite Link Terminal",
+            "use_when": "The navigation constellation requires direct synchronization, ranging, or data exchange between satellites."
+        },
+        {
+            "payload_type": "Navigation Augmentation Payload",
+            "use_when": "The mission improves the accuracy, integrity, or availability of an existing navigation system over a specific region."
+        }
+    ],
+
+    "required_subsystems": [
+        {
+            "subsystem": "Timing System",
+            "reason": "Navigation accuracy depends directly on extremely precise and stable time measurements."
+        },
+        {
+            "subsystem": "COMMS",
+            "reason": "The satellite must continuously broadcast navigation signals and receive commands and updated navigation data from ground stations."
+        },
+        {
+            "subsystem": "ADCS",
+            "reason": "The spacecraft and its antennas must maintain the required orientation to provide reliable signal coverage."
+        },
+        {
+            "subsystem": "EPS",
+            "reason": "Atomic clocks, signal generators, transmitters, and onboard electronics require continuous and reliable electrical power."
+        },
+        {
+            "subsystem": "Thermal Control",
+            "reason": "Atomic clocks and navigation electronics require stable temperatures to maintain timing accuracy."
+        },
+        {
+            "subsystem": "OBC",
+            "reason": "The onboard computer manages timing data, navigation messages, spacecraft status, and signal generation."
+        }
+    ],
+
+    "design_drivers": [
+        "Timing accuracy",
+        "Clock stability",
+        "Constellation size",
+        "Satellite geometry",
+        "Position dilution of precision",
+        "Signal strength",
+        "Coverage availability",
+        "Navigation integrity",
+        "Frequency-band selection",
+        "Radiation environment"
+    ],
+
+    "advantages": [
+        "MEO provides a balance between wide coverage and manageable constellation size.",
+        "A properly designed MEO constellation can provide continuous regional or global navigation coverage.",
+        "Higher altitude allows each satellite to cover a larger portion of Earth than a LEO navigation satellite."
+    ],
+
+    "limitations": [
+        "A single navigation satellite cannot determine a complete user position.",
+        "Navigation systems require multiple synchronized satellites and extensive ground infrastructure.",
+        "Timing errors can directly produce significant positioning errors.",
+        "MEO satellites operate in a stronger radiation environment than many LEO spacecraft.",
+        "Launching and replacing an entire navigation constellation is expensive."
+    ],
+
+    "selection_rules": [
+        {
+            "condition": "The mission requires continuous global navigation coverage.",
+            "recommendation": "Use a MEO constellation with multiple orbital planes, synchronized atomic clocks, and dedicated navigation transmitters."
+        },
+        {
+            "condition": "The mission requires regional navigation coverage.",
+            "recommendation": "Use a smaller MEO constellation or combine MEO satellites with inclined geosynchronous satellites."
+        },
+        {
+            "condition": "The mission augments an existing navigation system over a fixed region.",
+            "recommendation": "Consider a GEO or inclined geosynchronous augmentation satellite."
+        },
+        {
+            "condition": "The mission is only testing new navigation technology.",
+            "recommendation": "Use a lower-cost LEO technology-demonstration satellite before deploying the operational system."
+        },
+        {
+            "condition": "The mission requires improved positioning accuracy and integrity.",
+            "recommendation": "Add redundant atomic clocks, continuous ground monitoring, correction messages, and fault-detection capability."
+        }
+    ]
+},
+    "Weather Monitoring": {
+    "default_orbit": "GEO",
+    "minimum_altitude_km": 35786,
+    "maximum_altitude_km": 35786,
+    "typical_mass_class": "Medium to Large Satellite",
+    "typical_lifetime_years": 10,
+
+    "payload_options": [
+        {
+            "payload_type": "Multispectral Weather Imager",
+            "use_when": "The mission requires frequent imaging of clouds, storms, dust, moisture, and atmospheric conditions over a wide region."
+        },
+        {
+            "payload_type": "Thermal Infrared Imager",
+            "use_when": "The mission must estimate cloud-top temperature and observe weather systems during both daytime and nighttime."
+        },
+        {
+            "payload_type": "Infrared Atmospheric Sounder",
+            "use_when": "The mission requires vertical profiles of atmospheric temperature and humidity."
+        },
+        {
+            "payload_type": "Microwave Sounder",
+            "use_when": "The mission requires atmospheric measurements through cloud layers or information about precipitation and water vapor."
+        },
+        {
+            "payload_type": "Lightning Mapper",
+            "use_when": "The mission requires continuous detection and tracking of lightning activity and severe storms."
+        }
+    ],
+
+    "required_subsystems": [
+        {
+            "subsystem": "COMMS",
+            "reason": "Weather data must be transmitted frequently and with low delay to forecasting centers and emergency services."
+        },
+        {
+            "subsystem": "ADCS",
+            "reason": "The spacecraft must maintain stable Earth pointing so repeated images can be accurately compared."
+        },
+        {
+            "subsystem": "Thermal Control",
+            "reason": "Imaging and sounding instruments require stable operating temperatures to preserve measurement accuracy."
+        },
+        {
+            "subsystem": "EPS",
+            "reason": "Weather payloads, onboard processors, and high-rate transmitters require continuous and reliable electrical power."
+        },
+        {
+            "subsystem": "OBC",
+            "reason": "Large volumes of weather data require onboard collection, calibration, compression, storage, and scheduling."
+        },
+        {
+            "subsystem": "Payload Calibration System",
+            "reason": "Radiometric measurements must remain calibrated so data from different times can be compared reliably."
+        }
+    ],
+
+    "design_drivers": [
+        "Observation refresh rate",
+        "Spatial resolution",
+        "Spectral resolution",
+        "Radiometric accuracy",
+        "Atmospheric vertical resolution",
+        "Coverage area",
+        "Data latency",
+        "Instrument calibration",
+        "Day and night observation capability"
+    ],
+
+    "advantages": [
+        "GEO provides continuous observation of approximately the same region.",
+        "Frequent imaging allows storms and cloud movement to be tracked in near real time.",
+        "Infrared instruments allow weather observation during nighttime."
+    ],
+
+    "limitations": [
+        "GEO provides weaker spatial resolution than lower-altitude weather satellites for similar instrument sizes.",
+        "Coverage becomes less effective at very high latitudes.",
+        "Large weather payloads can require significant power, mass, thermal control, and communication capacity.",
+        "A single GEO satellite cannot provide detailed global coverage."
+    ],
+
+    "selection_rules": [
+        {
+            "condition": "The mission requires continuous monitoring of storms over one fixed region.",
+            "recommendation": "Use GEO with a multispectral imager, thermal infrared channels, and high-frequency data transmission."
+        },
+        {
+            "condition": "The mission requires global atmospheric measurements and polar coverage.",
+            "recommendation": "Use a polar LEO or SSO satellite, typically with infrared and microwave sounders."
+        },
+        {
+            "condition": "The mission requires cloud-top temperatures during day and night.",
+            "recommendation": "Include a thermal infrared imager."
+        },
+        {
+            "condition": "The mission requires temperature and humidity profiles through the atmosphere.",
+            "recommendation": "Include infrared and microwave atmospheric sounders."
+        },
+        {
+            "condition": "The mission focuses on severe storms and rapid warning.",
+            "recommendation": "Prioritize short observation intervals, low data latency, and a lightning-mapping instrument."
+        }
+    ]
+    },
+    "Remote Sensing": {
+    "default_orbit": "SSO",
+    "minimum_altitude_km": 500,
+    "maximum_altitude_km": 800,
+    "typical_mass_class": "Small to Medium Satellite",
+    "typical_lifetime_years": 5,
+
+    "payload_options": [
+        {
+            "payload_type": "Multispectral Imager",
+            "use_when": "The mission requires measurements in several selected wavelength bands for agriculture, vegetation, water, geology, or environmental monitoring."
+        },
+        {
+            "payload_type": "Hyperspectral Imager",
+            "use_when": "The mission requires detailed material identification using many narrow and continuous spectral bands."
+        },
+        {
+            "payload_type": "Synthetic Aperture Radar",
+            "use_when": "The mission requires observation during nighttime, through clouds, or measurement of surface roughness, moisture, deformation, or flooding."
+        },
+        {
+            "payload_type": "Thermal Infrared Sensor",
+            "use_when": "The mission requires surface-temperature measurements, wildfire detection, heat-loss studies, or thermal-anomaly monitoring."
+        },
+        {
+            "payload_type": "LiDAR",
+            "use_when": "The mission requires precise three-dimensional measurements of terrain, vegetation height, ice elevation, or atmospheric properties."
+        }
+    ],
+
+    "required_subsystems": [
+        {
+            "subsystem": "ADCS",
+            "reason": "Remote-sensing instruments require accurate pointing, low image motion, and stable orientation during data collection."
+        },
+        {
+            "subsystem": "Payload Calibration System",
+            "reason": "Radiometric and spectral calibration are required so measurements remain scientifically meaningful and comparable over time."
+        },
+        {
+            "subsystem": "OBC",
+            "reason": "Large payload datasets may require onboard processing, compression, correction, storage, and scheduling."
+        },
+        {
+            "subsystem": "COMMS",
+            "reason": "High-resolution spectral, radar, or LiDAR measurements can produce large data volumes that require a high-capacity downlink."
+        },
+        {
+            "subsystem": "EPS",
+            "reason": "Active sensors, imaging electronics, onboard processors, and transmitters require reliable electrical power."
+        },
+        {
+            "subsystem": "Thermal Control",
+            "reason": "Sensor temperature stability is necessary to preserve calibration, reduce noise, and maintain measurement accuracy."
+        }
+    ],
+
+    "design_drivers": [
+        "Spatial resolution",
+        "Spectral resolution",
+        "Radiometric resolution",
+        "Signal-to-noise ratio",
+        "Swath width",
+        "Revisit time",
+        "Instrument calibration",
+        "Data volume",
+        "Observation geometry",
+        "Cloud and illumination conditions"
+    ],
+
+    "advantages": [
+        "SSO provides approximately consistent local solar time for repeat observations.",
+        "Multispectral and hyperspectral sensors can identify surface properties that are not visible to the human eye.",
+        "SAR can operate during nighttime and through most cloud conditions.",
+        "Remote-sensing data can support agriculture, geology, environmental monitoring, disaster response, and scientific research."
+    ],
+
+    "limitations": [
+        "Optical and infrared sensors can be affected by clouds, haze, illumination, and atmospheric interference.",
+        "Hyperspectral, radar, and LiDAR instruments can generate very large data volumes.",
+        "High spatial and spectral resolution generally increase payload complexity, power demand, storage, and communication requirements.",
+        "Accurate scientific interpretation requires careful calibration and atmospheric correction.",
+        "Active sensors such as SAR and LiDAR can require substantial electrical power."
+    ],
+
+    "selection_rules": [
+        {
+            "condition": "The mission requires vegetation, agriculture, water, or environmental classification.",
+            "recommendation": "Use a multispectral imager in SSO with visible and near-infrared spectral bands."
+        },
+        {
+            "condition": "The mission requires detailed identification of minerals, chemicals, vegetation species, or surface materials.",
+            "recommendation": "Use a hyperspectral imager with strong radiometric calibration and high onboard storage capacity."
+        },
+        {
+            "condition": "The mission requires observation through clouds or during nighttime.",
+            "recommendation": "Use a Synthetic Aperture Radar payload in LEO or SSO."
+        },
+        {
+            "condition": "The mission requires surface-temperature or thermal-anomaly measurements.",
+            "recommendation": "Use a thermal infrared sensor with precise thermal control and calibration."
+        },
+        {
+            "condition": "The mission requires three-dimensional elevation or vegetation-height measurements.",
+            "recommendation": "Use LiDAR with precise orbit determination, accurate pointing, and sufficient payload power."
+        },
+        {
+            "condition": "The mission requires frequent observations of one location.",
+            "recommendation": "Prioritize revisit time using a wider-swath instrument, multiple satellites, or a constellation."
+        },
+        {
+            "condition": "The mission requires very high spatial resolution.",
+            "recommendation": "Use a lower LEO altitude and narrow-swath instrument while accepting reduced coverage and increased pointing requirements."
+        }
+    ]
+    },
+    "Scientific Research": {
+    "default_orbit": "LEO",
+    "minimum_altitude_km": 400,
+    "maximum_altitude_km": 1000,
+    "typical_mass_class": "Small to Medium Satellite",
+    "typical_lifetime_years": 5,
+
+    "payload_options": [
+        {
+            "payload_type": "Space Environment Sensor",
+            "use_when": "The mission studies radiation, charged particles, plasma, magnetic fields, or the near-Earth space environment."
+        },
+        {
+            "payload_type": "Astronomical Telescope",
+            "use_when": "The mission observes stars, galaxies, planets, or other astronomical objects without atmospheric interference."
+        },
+        {
+            "payload_type": "Atmospheric Science Instrument",
+            "use_when": "The mission measures atmospheric composition, density, temperature, aerosols, or trace gases."
+        },
+        {
+            "payload_type": "Microgravity Experiment Module",
+            "use_when": "The mission investigates biological, chemical, or material behavior in a microgravity environment."
+        },
+        {
+            "payload_type": "Particle Detector",
+            "use_when": "The mission measures energetic particles, cosmic rays, or solar radiation."
+        }
+    ],
+
+    "required_subsystems": [
+        {
+            "subsystem": "OBC",
+            "reason": "Scientific missions require experiment control, precise scheduling, data collection, processing, storage, and fault management."
+        },
+        {
+            "subsystem": "EPS",
+            "reason": "Scientific instruments may require stable electrical power, high peak power, or continuous operation."
+        },
+        {
+            "subsystem": "Thermal Control",
+            "reason": "Scientific measurements often require instruments to remain within narrow and stable temperature ranges."
+        },
+        {
+            "subsystem": "COMMS",
+            "reason": "Scientific payloads can generate large datasets that must be reliably transmitted to researchers on Earth."
+        },
+        {
+            "subsystem": "ADCS",
+            "reason": "Telescopes, directional sensors, and observation instruments may require precise pointing and low spacecraft motion."
+        },
+        {
+            "subsystem": "Payload Data Handling",
+            "reason": "Scientific data may require specialized formatting, time tagging, compression, calibration, and storage."
+        }
+    ],
+
+    "design_drivers": [
+        "Scientific objective",
+        "Measurement accuracy",
+        "Instrument sensitivity",
+        "Pointing accuracy",
+        "Thermal stability",
+        "Radiation environment",
+        "Observation duration",
+        "Data volume",
+        "Instrument calibration",
+        "Orbit environment"
+    ],
+
+    "advantages": [
+        "Space-based instruments can observe phenomena that are blocked or distorted by Earth's atmosphere.",
+        "LEO provides relatively low launch cost and frequent communication opportunities.",
+        "Scientific satellites can gather long-term measurements from environments that cannot be reproduced on Earth.",
+        "A dedicated spacecraft allows instruments to be optimized for a specific scientific objective."
+    ],
+
+    "limitations": [
+        "The appropriate orbit depends strongly on the exact scientific objective.",
+        "Sensitive instruments may require strict thermal, pointing, contamination, and vibration control.",
+        "Radiation can damage detectors and electronics or introduce measurement noise.",
+        "Scientific payloads can be expensive and difficult to repair after launch.",
+        "Limited communication opportunities may delay the return of large scientific datasets."
+    ],
+
+    "selection_rules": [
+        {
+            "condition": "The mission studies the near-Earth radiation, plasma, or magnetic environment.",
+            "recommendation": "Select an orbit that passes through the target environment and include particle, plasma, or magnetic-field sensors."
+        },
+        {
+            "condition": "The mission performs astronomical observation.",
+            "recommendation": "Use a stable orbit with minimal Earth obstruction, precise ADCS, low vibration, and strong thermal stability."
+        },
+        {
+            "condition": "The mission studies the upper atmosphere.",
+            "recommendation": "Use LEO at an altitude appropriate for the atmospheric region being measured."
+        },
+        {
+            "condition": "The mission studies microgravity experiments.",
+            "recommendation": "Use LEO with a payload module designed for experiment isolation, environmental control, and data collection."
+        },
+        {
+            "condition": "The mission requires measurements far from Earth's interference.",
+            "recommendation": "Consider a high Earth orbit, lunar orbit, heliocentric orbit, or a Lagrange-point mission depending on the objective."
+        },
+        {
+            "condition": "The scientific instrument requires extremely stable temperatures.",
+            "recommendation": "Prioritize passive thermal design, active temperature control, and an orbit with predictable thermal conditions."
+        }
+    ]
+    },
+    "Technology Demonstration": {
+    "default_orbit": "LEO",
+    "minimum_altitude_km": 400,
+    "maximum_altitude_km": 700,
+    "typical_mass_class": "CubeSat to Small Satellite",
+    "typical_lifetime_years": 2,
+
+    "payload_options": [
+        {
+            "payload_type": "Experimental Communication System",
+            "use_when": "The mission validates a new antenna, radio, modulation technique, frequency band, or inter-satellite communication technology."
+        },
+        {
+            "payload_type": "Experimental Propulsion System",
+            "use_when": "The mission tests a new thruster, propellant, propulsion controller, or orbit-maneuvering technique."
+        },
+        {
+            "payload_type": "Experimental Sensor",
+            "use_when": "The mission validates the performance of a new imaging, navigation, environmental, or scientific instrument."
+        },
+        {
+            "payload_type": "Experimental Onboard Computer",
+            "use_when": "The mission tests new processors, artificial intelligence, autonomous operations, or fault-management software."
+        },
+        {
+            "payload_type": "Experimental Material or Structure",
+            "use_when": "The mission evaluates new materials, deployable structures, coatings, thermal surfaces, or radiation protection."
+        }
+    ],
+
+    "required_subsystems": [
+        {
+            "subsystem": "OBC",
+            "reason": "The onboard computer controls the experiment, logs results, handles faults, and manages autonomous test sequences."
+        },
+        {
+            "subsystem": "EPS",
+            "reason": "Experimental technologies may have uncertain or highly variable power requirements."
+        },
+        {
+            "subsystem": "COMMS",
+            "reason": "Engineering telemetry and experiment data must be returned to evaluate whether the technology performed successfully."
+        },
+        {
+            "subsystem": "ADCS",
+            "reason": "Many experiments require controlled orientation, antenna pointing, target tracking, or specific environmental exposure."
+        },
+        {
+            "subsystem": "Thermal Control",
+            "reason": "Experimental hardware may not have extensive flight heritage and must remain within safe temperatures."
+        },
+        {
+            "subsystem": "Fault Detection and Recovery",
+            "reason": "The spacecraft must isolate experiment failures and protect the remaining spacecraft systems."
+        }
+    ],
+
+    "design_drivers": [
+        "Technology readiness level",
+        "Experiment success criteria",
+        "Acceptable mission risk",
+        "Launch cost",
+        "Required test duration",
+        "Experiment environment",
+        "Telemetry requirements",
+        "Power uncertainty",
+        "Redundancy level",
+        "Ability to isolate failures"
+    ],
+
+    "advantages": [
+        "LEO generally provides lower launch cost and easier communication than higher orbits.",
+        "Technology demonstration missions can increase technology readiness before operational deployment.",
+        "CubeSat and small-satellite platforms allow relatively rapid development.",
+        "A focused demonstration reduces the risk of introducing unproven technology directly into a critical mission."
+    ],
+
+    "limitations": [
+        "Experimental hardware has a greater probability of failure than flight-proven hardware.",
+        "Small spacecraft may have limited power, volume, thermal capacity, and communication bandwidth.",
+        "Short mission lifetimes may limit long-duration testing.",
+        "Low-cost missions may use less redundancy and therefore tolerate fewer failures.",
+        "A successful demonstration does not automatically prove readiness for every operational environment."
+    ],
+
+    "selection_rules": [
+        {
+            "condition": "The mission tests a new technology for the first time in space.",
+            "recommendation": "Use a low-cost LEO mission with clear success criteria and strong telemetry collection."
+        },
+        {
+            "condition": "The experimental payload could damage or interfere with the spacecraft.",
+            "recommendation": "Provide electrical, thermal, mechanical, and software isolation between the experiment and essential bus systems."
+        },
+        {
+            "condition": "The experiment requires high electrical power.",
+            "recommendation": "Size the EPS for peak experiment demand and operate the experiment according to available energy."
+        },
+        {
+            "condition": "The experiment tests autonomous AI or onboard processing.",
+            "recommendation": "Include safe operating limits, independent monitoring, fallback software, and the ability to disable the experiment."
+        },
+        {
+            "condition": "The technology is intended for a higher-radiation or deep-space mission.",
+            "recommendation": "Select an orbit that reproduces the required environment or use additional ground testing before operational deployment."
+        },
+        {
+            "condition": "The mission has limited budget and only needs basic in-orbit validation.",
+            "recommendation": "Use a CubeSat or small-satellite platform with minimal but sufficient supporting subsystems."
+        }
+    ]
+    },
+    "Disaster Management": {
+    "default_orbit": "LEO",
+    "minimum_altitude_km": 450,
+    "maximum_altitude_km": 800,
+    "typical_mass_class": "Small to Medium Satellite",
+    "typical_lifetime_years": 5,
+
+    "payload_options": [
+        {
+            "payload_type": "High-Resolution Optical Camera",
+            "use_when": "The mission requires detailed daytime imagery of damaged infrastructure, affected cities, coastlines, landslides, or wildfire regions."
+        },
+        {
+            "payload_type": "Thermal Infrared Imager",
+            "use_when": "The mission requires detection of wildfires, heat anomalies, volcanic activity, or hotspots during day and night."
+        },
+        {
+            "payload_type": "Synthetic Aperture Radar",
+            "use_when": "The mission requires imaging through clouds, smoke, or darkness, especially for floods, landslides, earthquakes, and surface deformation."
+        },
+        {
+            "payload_type": "Multispectral Imager",
+            "use_when": "The mission requires assessment of vegetation damage, flood extent, burned areas, water contamination, or environmental impact."
+        },
+        {
+            "payload_type": "Emergency Communication Relay",
+            "use_when": "The mission must restore or support communication when terrestrial infrastructure is damaged."
+        }
+    ],
+
+    "required_subsystems": [
+        {
+            "subsystem": "COMMS",
+            "reason": "Disaster information must reach emergency authorities rapidly, making low data latency and reliable downlink critical."
+        },
+        {
+            "subsystem": "ADCS",
+            "reason": "The satellite may need rapid retargeting and accurate pointing toward unexpected disaster locations."
+        },
+        {
+            "subsystem": "OBC",
+            "reason": "Onboard processing can prioritize, compress, classify, or detect important disaster imagery before downlink."
+        },
+        {
+            "subsystem": "EPS",
+            "reason": "Imaging payloads, onboard processors, and high-rate transmitters require reliable electrical power."
+        },
+        {
+            "subsystem": "Thermal Control",
+            "reason": "Payload performance and calibration must be maintained during intensive or repeated observations."
+        },
+        {
+            "subsystem": "Mission Planning System",
+            "reason": "The spacecraft must support rapid tasking, target prioritization, and schedule changes after an emergency occurs."
+        }
+    ],
+
+    "design_drivers": [
+        "Response time",
+        "Revisit time",
+        "Data latency",
+        "All-weather capability",
+        "Day and night capability",
+        "Spatial resolution",
+        "Swath width",
+        "Rapid retargeting",
+        "Ground-station availability",
+        "Onboard data prioritization"
+    ],
+
+    "advantages": [
+        "Satellites can observe regions where roads, communication systems, or local infrastructure have been damaged.",
+        "LEO imaging provides better spatial resolution than higher-altitude Earth-observation systems.",
+        "SAR can provide observations through clouds, smoke, and darkness.",
+        "Satellite imagery allows emergency authorities to assess large and inaccessible areas.",
+        "Constellations can significantly reduce the time between disaster occurrence and observation."
+    ],
+
+    "limitations": [
+        "A single LEO satellite may not pass over the affected region immediately.",
+        "Optical imagery can be blocked by clouds, smoke, or darkness.",
+        "Large image files and limited ground contacts can delay delivery.",
+        "High-resolution imaging often reduces swath width.",
+        "Rapid response requires coordinated ground stations, mission planning, processing, and data-distribution systems."
+    ],
+
+    "selection_rules": [
+        {
+            "condition": "The mission focuses on floods, earthquakes, landslides, or disasters occurring under clouds or during nighttime.",
+            "recommendation": "Use SAR in LEO or SSO for all-weather and day-night observation."
+        },
+        {
+            "condition": "The mission focuses on wildfire detection or thermal anomalies.",
+            "recommendation": "Use a thermal infrared imager with frequent revisit and low-latency communication."
+        },
+        {
+            "condition": "The mission requires detailed damage assessment after the event.",
+            "recommendation": "Use a high-resolution optical camera with agile ADCS for targeted imaging."
+        },
+        {
+            "condition": "The mission requires identification of burned vegetation, polluted water, or environmental impact.",
+            "recommendation": "Use a multispectral imager with visible and infrared bands."
+        },
+        {
+            "condition": "The mission requires rapid global response.",
+            "recommendation": "Use a multi-satellite LEO constellation, access to multiple ground stations, and automated mission planning."
+        },
+        {
+            "condition": "The mission must provide communication after terrestrial networks fail.",
+            "recommendation": "Include an emergency communication relay payload or use a dedicated communication satellite architecture."
+        },
+        {
+            "condition": "The mission requires the shortest possible delivery time.",
+            "recommendation": "Prioritize onboard event detection, image compression, data prioritization, and direct downlink to nearby ground stations."
+        }
+    ]
+    }
+}
