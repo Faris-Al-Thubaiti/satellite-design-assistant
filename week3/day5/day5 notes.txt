@@ -1,0 +1,15 @@
+Week 3 Day 5 Reflection
+
+Today was one of the most important days in developing my project because I finally integrated the artificial intelligence model with the engineering knowledge base and the database to create the first complete version of the satellite design assistant.
+
+I learned how a user's mission description can be processed by an AI model to generate a conceptual satellite design containing important engineering decisions such as the recommended orbit, payload, power requirements, mass class, lifetime, attitude control system, and the reasoning behind these choices.
+
+I also learned how to connect AI-generated results with a structured engineering database, allowing the system to store previous recommendations and retrieve relevant engineering knowledge based on the mission type.
+
+To test the system, I used different satellite mission scenarios, including communication, navigation, weather monitoring, Earth observation, remote sensing, scientific research, technology demonstration, and disaster management. These tests showed how different mission requirements lead to different engineering decisions.
+
+The most important lesson I learned today is that artificial intelligence alone is not enough to create reliable engineering solutions. A professional AI engineering assistant requires a structured knowledge base containing verified engineering information, rules, and design considerations to guide the decision-making process.
+
+I also realized that satellite design is not simply about choosing an orbit or payload. It is a complex system engineering process where engineers must balance multiple factors such as power, mass, data requirements, cost, mission objectives, and reliability.
+
+This day was a major milestone for my project because it transformed the idea of an AI satellite design assistant from a concept into a working prototype that combines software development, artificial intelligence, databases, and aerospace engineering principles.
