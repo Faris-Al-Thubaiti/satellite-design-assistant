@@ -236,13 +236,9 @@ def validate_ai_design(design: Any) -> dict[str, Any] | None:
 
     validated_design = dict(design)
 
-    validated_design["mission_type"] = (
-        canonical_mission_type
-    )
-
-    validated_design["recommended_orbit"] = (
-        recommended_orbit
-    )
+    validated_design["mission_type"] = canonical_mission_type
+        
+    validated_design["recommended_orbit"] = recommended_orbit
 
     return validated_design
 
@@ -314,17 +310,15 @@ Rules:
             instructions=instructions,
             input=mission_description
         )
-
-        if not response.output_text:
+        response_text = response.output_text
+        if not response_text.strip():
             print(
                 "AI analysis failed: "
                 "the response was empty."
             )
             return None
 
-        raw_design = json.loads(
-            response.output_text
-        )
+        raw_design = json.loads(response_text)
 
         return validate_ai_design(raw_design)
 
@@ -437,10 +431,8 @@ def seed_knowledge_base() -> int:
             f"{KNOWLEDGE_FILE}"
         )
 
-    with KNOWLEDGE_FILE.open(
-        "r",
-        encoding="utf-8"
-    ) as file:
+    with KNOWLEDGE_FILE.open("r",encoding="utf-8") as file:
+        
         knowledge_contents = json.load(file)
 
     inserted_count = 0
