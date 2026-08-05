@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="AI-assisted conceptual satellite mission design">
+    <title>Satellite Design Assistant</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="space-grid" aria-hidden="true"></div>
+    <header class="topbar">
+        <a class="brand" href="#top" aria-label="Satellite Design Assistant home">
+            <span class="brand-mark" aria-hidden="true">
+                <span class="orbit orbit-one"></span>
+                <span class="orbit orbit-two"></span>
+                <span class="planet"></span>
+            </span>
+            <span>
+                <strong>Satellite Design</strong>
+                <small>Assistant</small>
+            </span>
+        </a>
+        <div class="system-status"><span></span> System ready</div>
+    </header>
+
+    <main id="top" class="app-shell">
+        <section class="workspace">
+            <div class="hero-copy">
+                <p class="eyebrow">Concept mission engineering</p>
+                <h1>Turn a mission idea into a <em>satellite architecture.</em></h1>
+                <p>Describe the outcome you need. The assistant will propose an orbit, payload, power budget, mass class, lifetime, and attitude-control approach—with engineering context.</p>
+            </div>
+
+            <section class="panel composer" aria-labelledby="mission-heading">
+                <div class="panel-heading">
+                    <div>
+                        <span class="step">01</span>
+                        <h2 id="mission-heading">Mission brief</h2>
+                    </div>
+                    <span id="character-count">0 / 2,000</span>
+                </div>
+
+                <form id="mission-form">
+                    <label for="description">What should the satellite accomplish?</label>
+                    <textarea id="description" name="description" rows="6" minlength="10" maxlength="2000" required placeholder="Example: Monitor vegetation health and irrigation conditions across farms in western Saudi Arabia every five days."></textarea>
+                    <div class="prompt-row" aria-label="Example mission prompts">
+                        <button type="button" class="prompt-chip" data-prompt="Capture multispectral images of agricultural areas in western Saudi Arabia every five days to monitor crop health and irrigation.">Agriculture monitoring</button>
+                        <button type="button" class="prompt-chip" data-prompt="Provide reliable emergency communications to remote communities after floods or earthquakes disrupt ground networks.">Emergency communications</button>
+                        <button type="button" class="prompt-chip" data-prompt="Track dust storms over the Arabian Peninsula and deliver frequent imagery for early warnings and weather forecasting.">Dust-storm tracking</button>
+                    </div>
+                    <div class="form-actions">
+                        <p>Your API key remains on the server and is never sent to the browser.</p>
+                        <button id="analyze-button" class="primary-button" type="submit">
+                            <span class="button-label">Analyze mission</span>
+                            <span class="button-arrow" aria-hidden="true">↗</span>
+                        </button>
+                    </div>
+                </form>
+                <div id="message" class="message" role="status" aria-live="polite" hidden></div>
+            </section>
+
+            <section id="loading" class="loading-panel" aria-live="polite" hidden>
+                <div class="scanner" aria-hidden="true"><span></span></div>
+                <div>
+                    <strong>Running conceptual design analysis</strong>
+                    <p>Classifying the mission, sizing the architecture, and retrieving engineering knowledge…</p>
+                </div>
+            </section>
+
+            <section id="result" class="result-panel" aria-labelledby="result-heading" hidden>
+                <div class="result-header">
+                    <div>
+                        <p class="eyebrow">Analysis complete</p>
+                        <h2 id="result-heading">Recommended architecture</h2>
+                    </div>
+                    <button id="download-report" class="secondary-button" type="button">Download PDF</button>
+                </div>
+
+                <div class="mission-summary">
+                    <span>Mission brief</span>
+                    <p id="result-description"></p>
+                </div>
+
+                <div class="metrics-grid">
+                    <article><span>Mission type</span><strong id="metric-mission"></strong></article>
+                    <article><span>Orbit</span><strong id="metric-orbit"></strong></article>
+                    <article><span>Altitude</span><strong id="metric-altitude"></strong></article>
+                    <article><span>Power</span><strong id="metric-power"></strong></article>
+                    <article><span>Mass class</span><strong id="metric-mass"></strong></article>
+                    <article><span>Lifetime</span><strong id="metric-lifetime"></strong></article>
+                </div>
+
+                <div class="design-columns">
+                    <article class="detail-card accent-blue">
+                        <span class="detail-label">Payload</span>
+                        <h3 id="result-payload"></h3>
+                    </article>
+                    <article class="detail-card accent-teal">
+                        <span class="detail-label">Attitude control</span>
+                        <h3 id="result-adcs"></h3>
+                    </article>
+                </div>
+
+                <article class="reasoning-card">
+                    <span class="detail-label">Engineering rationale</span>
+                    <p id="result-justification"></p>
+                </article>
+
+                <div class="knowledge-grid">
+                    <article>
+                        <h3>Design drivers</h3>
+                        <ul id="knowledge-drivers"></ul>
+                    </article>
+                    <article>
+                        <h3>Required subsystems</h3>
+                        <ul id="knowledge-subsystems"></ul>
+                    </article>
+                    <article>
+                        <h3>Advantages</h3>
+                        <ul id="knowledge-advantages"></ul>
+                    </article>
+                    <article>
+                        <h3>Limitations</h3>
+                        <ul id="knowledge-limitations"></ul>
+                    </article>
+                </div>
+            </section>
+        </section>
+
+        <aside class="history-panel" aria-labelledby="history-heading">
+            <div class="history-header">
+                <div>
+                    <p class="eyebrow">Saved locally</p>
+                    <h2 id="history-heading">Mission history</h2>
+                </div>
+                <button id="refresh-history" class="icon-button" type="button" aria-label="Refresh mission history">↻</button>
+            </div>
+            <p class="history-intro">Select a previous mission to reopen its complete recommendation without calling the AI again.</p>
+            <div id="history-list" class="history-list"></div>
+            <div id="history-empty" class="empty-state" hidden>
+                <span>◌</span>
+                <strong>No saved missions yet</strong>
+                <p>Your completed analyses will appear here.</p>
+            </div>
+        </aside>
+    </main>
+
+    <template id="history-template">
+        <article class="history-item">
+            <button class="history-open" type="button">
+                <span class="history-type"></span>
+                <strong class="history-description"></strong>
+                <small class="history-meta"></small>
+            </button>
+            <button class="history-delete" type="button" aria-label="Delete mission">×</button>
+        </article>
+    </template>
+
+    <footer>
+        <span>Satellite Design Assistant</span>
+        <span>KACST Summer Training • Conceptual designs require engineering verification</span>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}" defer></script>
+</body>
+</html>
+

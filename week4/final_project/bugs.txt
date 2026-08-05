@@ -1,0 +1,46 @@
+Satellite Design Assistant — verification log
+================================================
+
+Scope
+-----
+The final application is tested against all eight supported mission types:
+Earth Observation, Communication, Navigation, Weather Monitoring,
+Remote Sensing, Scientific Research, Technology Demonstration, and
+Disaster Management.
+
+Issues found and resolved
+-------------------------
+1. The week-three script created the OpenAI client at import time and stopped
+   immediately when an API key was absent. The final app now loads the client
+   only when /analyze is called and returns a clear 503 configuration message.
+
+2. The source database was named satellites.db while the final-delivery
+   checklist specifies satellite.db. The final project uses satellite.db and
+   keeps the original week-three file unchanged.
+
+3. Flask, flask-cors, ReportLab, and pytest were missing from the project
+   virtual environment. They are now installed and pinned in requirements.txt.
+
+4. Invalid AI JSON could previously be accepted inconsistently. The final
+   pipeline strictly rejects missing/extra fields, unsupported mission types or
+   orbits, empty text fields, booleans, and non-positive numeric values.
+
+5. Mission and recommendation deletion could leave related data behind if
+   foreign keys were not enabled. Every database connection now enables
+   PRAGMA foreign_keys, and an automated test verifies cascade deletion.
+
+Open issues
+-----------
+None found in the automated acceptance suite. A real AI request still depends
+on a valid OPENAI_API_KEY and network availability, as expected.
+
+Final acceptance results — 2026-08-05
+-------------------------------------
+- 26 automated tests passed.
+- One real OpenAI mission analysis completed and was saved to SQLite.
+- Saved mission detail reopened without a second AI request.
+- Desktop layout rendered with the complete mission-history panel.
+- 390 x 844 mobile layout had no horizontal overflow.
+- Generated sample PDF passed structural inspection and visual rendering.
+- Initial three-page report was compressed to two pages after visual QA found
+  a selection-rule bullet stranded on an otherwise blank final page.
